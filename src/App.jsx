@@ -6,7 +6,7 @@ import Signup  from './components/signup'
 import Login from './components/login'
 import { useSelector, useDispatch } from "react-redux";
 import { initializeUser, selectUser } from "./redux/slice/userSlice";
-
+import Dashboard from './components/Dashboard';
 function App() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -27,25 +27,9 @@ function App() {
   return (
     <>
       <Routes>
-            {user && user.jwt ? (
-              user.role === "cashier" ? (
-                <>
-                  {/* <Route path="/" element={<Navigate to="/dashboard" />} />
-                  <Route path="/dashboard" element={<Dashboard userRole={user.role} />} />
-                  <Route path = "/animeInvoice" element= {<AnimeInvoice/>} /> */}
-
-                </>
-              ) : user.role === "Manager" ? (
-                <>
-                  {/* <Route path="/" element={<Navigate to="/dashboard" />} />
-                  <Route path="/dashboard" element={<Dashboard userRole={user.role} />} /> */}
-                </>
-              ) : null
-            ) : (
-              <Route path="/" element={<Login />} />
-            )}
+           <Route path="dashboard" element={<Dashboard />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="/*" element={<ErrorPage />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
     </>
   )
